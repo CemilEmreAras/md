@@ -46,6 +46,7 @@ function ThemeToggle({ isScrolled }) {
 // Public Navbar
 function PublicNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,6 +68,7 @@ function PublicNavbar() {
         : 'bg-transparent'}`}
     >
       <div className="container mx-auto px-4">
+        {/* Logo */}
         <div className="flex-1">
           <a href="/" className="btn btn-ghost px-4">
             <img 
@@ -76,18 +78,80 @@ function PublicNavbar() {
             />
           </a>
         </div>
-        <div className="flex-none">
-          <div className="flex items-center gap-4">
-            <a href="/" className={`btn btn-ghost ${!isScrolled && 'text-white hover:bg-white/10'}`}>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex flex-none gap-4">
+          <a href="/" className={`btn btn-ghost ${!isScrolled && 'text-white hover:bg-white/10'}`}>
+            Anasayfa
+          </a>
+          <a href="/#about" className={`btn btn-ghost ${!isScrolled && 'text-white hover:bg-white/10'}`}>
+            Hakkımızda
+          </a>
+          <a href="/#contact" className={`btn btn-ghost ${!isScrolled && 'text-white hover:bg-white/10'}`}>
+            İletişim
+          </a>
+          <ThemeToggle isScrolled={isScrolled} />
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="flex md:hidden gap-2">
+          <ThemeToggle isScrolled={isScrolled} />
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`btn btn-ghost btn-circle ${!isScrolled && 'text-white hover:bg-white/10'}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d={isMenuOpen 
+                  ? "M6 18L18 6M6 6l12 12" 
+                  : "M4 6h16M4 12h16M4 18h16"
+                }
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <div 
+        className={`md:hidden absolute top-full left-0 right-0 transition-all duration-300 
+          ${isMenuOpen 
+            ? 'opacity-100 visible translate-y-0' 
+            : 'opacity-0 invisible -translate-y-2'
+          }`}
+      >
+        <div className={`p-4 shadow-lg ${isScrolled ? 'bg-base-100' : 'bg-base-100/95 backdrop-blur-sm'}`}>
+          <div className="flex flex-col gap-2">
+            <a 
+              href="/" 
+              className="btn btn-ghost w-full justify-start"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Anasayfa
             </a>
-            <a href="/#about" className={`btn btn-ghost ${!isScrolled && 'text-white hover:bg-white/10'}`}>
+            <a 
+              href="/#about" 
+              className="btn btn-ghost w-full justify-start"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Hakkımızda
             </a>
-            <a href="/#contact" className={`btn btn-ghost ${!isScrolled && 'text-white hover:bg-white/10'}`}>
+            <a 
+              href="/#contact" 
+              className="btn btn-ghost w-full justify-start"
+              onClick={() => setIsMenuOpen(false)}
+            >
               İletişim
             </a>
-            <ThemeToggle isScrolled={isScrolled} />
           </div>
         </div>
       </div>
