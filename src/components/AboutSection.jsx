@@ -22,7 +22,7 @@ function AboutSection() {
               alt="Eğitim Ortamı"
               className="relative rounded-2xl shadow-xl w-full h-full object-cover transform transition-transform group-hover:translate-x-2 group-hover:translate-y-2"
             />
-            <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg">
+            <div className="absolute bottom-4 right-4 bg-base-100/90 backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg">
               <div className="text-2xl font-bold text-primary">2023</div>
               <div className="text-sm text-base-content/70">Kuruluş Yılı</div>
             </div>
@@ -31,7 +31,7 @@ function AboutSection() {
           {/* Right Column - Mission & Vision */}
           <div className="space-y-8">
             {/* Mission Card */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-base-100 dark:bg-base-200/50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="flex items-center gap-4 mb-6">
                 <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -46,7 +46,7 @@ function AboutSection() {
             </div>
 
             {/* Vision Card */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-base-100 dark:bg-base-200/50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="flex items-center gap-4 mb-6">
                 <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
