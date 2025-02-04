@@ -1,86 +1,64 @@
 function AboutSection() {
   return (
-    <section className="py-16 bg-base-100">
+    <section id="about" className="py-24 bg-gradient-to-b from-base-100 to-base-200">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Hakkımızda</h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
-          <p className="text-xl text-base-content/70 max-w-3xl mx-auto">
-            2020 yılından bu yana, teknoloji eğitiminde öncü yaklaşımımızla binlerce öğrenciye ulaştık.
+        {/* Header Section */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+            Biz Kimiz?
+          </h2>
+          <p className="text-lg leading-relaxed text-base-content/80">
+            İzmir Merhaba Dünya Özel Eğitim Kurumları 2023 yılında kurulmuş, Milli Eğitim Bakanlığına bağlı en iyi yazılım eğitim kurumlarından biridir. Amacımız, modern yazılım geliştirme tekniklerini öğreterek, öğrencilerimizi yazılım sektörünün aranan profesyonelleri haline getirmektir.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {/* Misyon */}
-          <div className="card bg-base-200 hover:shadow-xl transition-shadow">
-            <div className="card-body items-center text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="card-title mb-2">Misyonumuz</h3>
-              <p className="text-base-content/70">
-                Kaliteli eğitimi herkes için erişilebilir kılmak ve teknoloji alanında yeni nesil uzmanlar yetiştirmek.
-              </p>
+        {/* Main Content */}
+        <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+          {/* Left Column - Image */}
+          <div className="relative group">
+            <div className="absolute inset-0 bg-primary/10 rounded-2xl transform rotate-6 transition-transform group-hover:rotate-4"></div>
+            <img 
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071" 
+              alt="Eğitim Ortamı"
+              className="relative rounded-2xl shadow-xl w-full h-full object-cover transform transition-transform group-hover:translate-x-2 group-hover:translate-y-2"
+            />
+            <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg">
+              <div className="text-2xl font-bold text-primary">2023</div>
+              <div className="text-sm text-base-content/70">Kuruluş Yılı</div>
             </div>
           </div>
 
-          {/* Vizyon */}
-          <div className="card bg-base-200 hover:shadow-xl transition-shadow">
-            <div className="card-body items-center text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
+          {/* Right Column - Mission & Vision */}
+          <div className="space-y-8">
+            {/* Mission Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-base-content">Misyonumuz</h3>
               </div>
-              <h3 className="card-title mb-2">Vizyonumuz</h3>
-              <p className="text-base-content/70">
-                Türkiye'nin en kapsamlı ve yenilikçi online eğitim platformu olarak global bir marka haline gelmek.
+              <p className="text-base-content/70 leading-relaxed">
+                Öğrencilerimize en güncel yazılım teknolojilerini öğreterek, onları dijital çağın gereksinimlerine hazırlamak ve sektörde aranan profesyoneller olarak yetiştirmek.
               </p>
             </div>
-          </div>
 
-          {/* Değerlerimiz */}
-          <div className="card bg-base-200 hover:shadow-xl transition-shadow">
-            <div className="card-body items-center text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
+            {/* Vision Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-base-content">Vizyonumuz</h3>
               </div>
-              <h3 className="card-title mb-2">Değerlerimiz</h3>
-              <p className="text-base-content/70">
-                Yenilikçilik, kalite, erişilebilirlik ve sürdürülebilir başarı odaklı eğitim anlayışı.
+              <p className="text-base-content/70 leading-relaxed">
+                Türkiye'nin yazılım eğitiminde öncü kurumu olmak ve mezunlarımızla global teknoloji dünyasında söz sahibi olmak.
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* İstatistikler */}
-        <div className="stats shadow w-full">
-          <div className="stat place-items-center">
-            <div className="stat-title">Öğrenciler</div>
-            <div className="stat-value">10K+</div>
-            <div className="stat-desc">2023 yılı itibariyle</div>
-          </div>
-          
-          <div className="stat place-items-center">
-            <div className="stat-title">Eğitmenler</div>
-            <div className="stat-value text-primary">100+</div>
-            <div className="stat-desc">Uzman kadro</div>
-          </div>
-          
-          <div className="stat place-items-center">
-            <div className="stat-title">Eğitimler</div>
-            <div className="stat-value">500+</div>
-            <div className="stat-desc">Güncel içerik</div>
-          </div>
-          
-          <div className="stat place-items-center">
-            <div className="stat-title">Memnuniyet</div>
-            <div className="stat-value text-secondary">96%</div>
-            <div className="stat-desc">Öğrenci memnuniyeti</div>
           </div>
         </div>
       </div>

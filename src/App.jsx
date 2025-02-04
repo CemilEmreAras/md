@@ -1,67 +1,85 @@
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { VideoProvider } from './context/VideoContext';
-import Login from './components/Login';
-import AdminPanel from './components/AdminPanel';
-import StudentPanel from './components/StudentPanel';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeSlider from './components/HomeSlider';
 import AboutSection from './components/AboutSection';
 import CoursesSection from './components/CoursesSection';
+import Footer from './components/Footer';
+import CourseDetail from './components/courses/CourseDetail';
+import AdminPanel from './components/admin/AdminPanel';
+import { courses } from './data/courses';
+import { SliderProvider } from './context/SliderContext';
+import mdLogo from './assets/MDLOGO.svg';
+import { useState, useEffect } from 'react';
 
-function AppContent() {
-  const { currentUser, logout } = useAuth();
+// Public Navbar
+function PublicNavbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-base-200 flex flex-col">
-      {/* Navbar */}
-      <div className="navbar bg-base-100 shadow-lg">
+    <div className={`navbar fixed top-0 left-0 right-0 z-50 transition-all duration-300 
+      ${isScrolled 
+        ? 'bg-base-100 shadow-lg' 
+        : 'bg-transparent'}`}
+    >
+      <div className="container mx-auto px-4">
         <div className="flex-1">
-          <a href="/" className="btn btn-ghost normal-case text-xl">Akademi</a>
+          <a href="/" className="btn btn-ghost px-4">
+            <img 
+              src={mdLogo} 
+              alt="MD Logo" 
+              className={`h-12 w-auto transition-all duration-300 ${!isScrolled && 'brightness-0 invert'}`}
+            />
+          </a>
         </div>
         <div className="flex-none">
-          {currentUser ? (
-            <>
-              <span className="mr-4">
-                {currentUser.role === 'admin' ? 'Admin' : currentUser.name}
-              </span>
-              <button onClick={logout} className="btn btn-ghost">
-                Çıkış Yap
-              </button>
-            </>
-          ) : (
-            <div className="flex gap-4">
-              <a href="/" className="btn btn-ghost">Anasayfa</a>
-              <a href="/#about" className="btn btn-ghost">Hakkımızda</a>
-              <a href="/#contact" className="btn btn-ghost">İletişim</a>
-            </div>
-          )}
+          <div className="flex gap-4">
+            <a href="/" className={`btn btn-ghost ${!isScrolled && 'text-white hover:bg-white/10'}`}>
+              Anasayfa
+            </a>
+            <a href="/#about" className={`btn btn-ghost ${!isScrolled && 'text-white hover:bg-white/10'}`}>
+              Hakkımızda
+            </a>
+            <a href="/#contact" className={`btn btn-ghost ${!isScrolled && 'text-white hover:bg-white/10'}`}>
+              İletişim
+            </a>
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
 
-      {/* İçerik */}
-      <div className="flex-grow">
-        {!window.location.pathname.includes('login') && !currentUser && (
-          <>
-            <HomeSlider />
-            <AboutSection />
-            <CoursesSection />
-          </>
-        )}
-        
-        {window.location.pathname.includes('login') && !currentUser && (
-          <Login />
-        )}
+// Ana sayfa bileşeni
+function HomePage() {
+  return (
+    <>
+      <HomeSlider />
+      <AboutSection />
+      <CoursesSection />
+    </>
+  );
+}
 
-        {currentUser && currentUser.role === 'admin' && (
-          <AdminPanel />
-        )}
-
-        {currentUser && currentUser.role === 'student' && (
-          <StudentPanel currentStudent={currentUser} />
-        )}
-      </div>
-
-      {/* Footer */}
+// Public Layout
+function PublicLayout({ children }) {
+  return (
+    <div className="min-h-screen bg-base-200 flex flex-col">
+      <PublicNavbar />
+      <main className="flex-grow">
+        {children}
+      </main>
       <Footer />
     </div>
   );
@@ -69,11 +87,27 @@ function AppContent() {
 
 function App() {
   return (
-    <AuthProvider>
-      <VideoProvider>
-        <AppContent />
-      </VideoProvider>
-    </AuthProvider>
+    <Router>
+      <SliderProvider>
+        <Routes>
+          {/* Admin Routes */}
+          <Route path="/admin/*" element={<AdminPanel />} />
+          
+          {/* Public Routes */}
+          <Route path="/" element={
+            <PublicLayout>
+              <HomePage />
+            </PublicLayout>
+          } />
+          
+          <Route path="/courses/:courseId" element={
+            <PublicLayout>
+              <CourseDetail course={courses.computerOperator} />
+            </PublicLayout>
+          } />
+        </Routes>
+      </SliderProvider>
+    </Router>
   );
 }
 
